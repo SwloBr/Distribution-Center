@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: DistribuitionCenter
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/cd
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 6981
+
+logging:
+  level:
+    root: info
+    org.hibernate.sql: debug
+    org.springframework: info
