@@ -6,6 +6,8 @@ import com.swlo.distribuitioncenter.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -24,13 +26,24 @@ public class ProductService {
         );
     }
 
-
     public ProductEntity createProduct(ProductEntity productEntity) {
-
-
-
-
+        return productRepository.save(productEntity);
     }
 
+    public List<ProductEntity> getAllProducts() {
+        return productRepository.findAll();
+    }
 
+    public ProductEntity updateProduct(String id, ProductEntity updatedProduct) {
+        ProductEntity existing = getProductById(id);
+        existing.setName(updatedProduct.getName());
+        existing.setPrice(updatedProduct.getPrice());
+        existing.setStock(updatedProduct.getStock());
+        existing.setDescription(updatedProduct.getDescription());
+        return productRepository.save(existing);
+    }
+
+    public void deleteProduct(String id) {
+        productRepository.deleteById(id);
+    }
 }
