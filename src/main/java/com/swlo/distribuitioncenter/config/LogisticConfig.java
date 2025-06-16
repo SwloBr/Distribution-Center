@@ -1,6 +1,5 @@
 package com.swlo.distribuitioncenter.config;
 
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +18,19 @@ public class LogisticConfig {
     @Value("${cd.url}")
     private String address;
 
+    public String getHub() {
+        return hub;
+    }
 
+    public Long getId() {
+        return id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
 }
