@@ -12,9 +12,16 @@ spring:
     show-sql: true
 server:
   port: 6981
-
 logging:
   level:
     root: info
     org.hibernate.sql: debug
     org.springframework: info
+
+cd:
+  id: 1
+  name: "pedro"
+  url: "http://10.1.6.196:6981"
+
+hub:
+  address: "http://10.1.6.194:6980"
