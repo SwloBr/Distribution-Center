@@ -21,7 +21,7 @@ public interface HubClient {
     @GetMapping("/cds/disponiveis")
     CdDto[] getAllDistributionCenters();
 
-    @PostMapping("/quotation/{productId}/{quantity}")
+    @GetMapping("/quotation/{productId}/{quantity}")
     List<QuotationResponseDto> getQuotation(
             @PathVariable("productId") String productId,
             @PathVariable("quantity") Integer quantity
