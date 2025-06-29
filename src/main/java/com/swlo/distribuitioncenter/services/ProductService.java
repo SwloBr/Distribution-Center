@@ -80,7 +80,7 @@ public class ProductService {
 
 
     public void sendProduct(String productId, int quantity) {
-        ProductEntity product = getProductById(productId);
+        ProductEntity product = getProductByName(productId);
         if (product.getStock() < quantity) {
             throw new RuntimeException("Insufficient stock for product: " + productId);
         }
