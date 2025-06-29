@@ -11,8 +11,8 @@ public class CdClient {
         this.restTemplate = new RestTemplate();
     }
 
-    public void sendProduct(String productId, int quantity) {
-        String url = baseUrl + "/products/send/" + productId + "/" + quantity;
+    public void sendProduct(String productName, int quantity) {
+        String url = baseUrl + "/products/send/" + productName + "/" + quantity;
         restTemplate.postForObject(url, null, Void.class);
     }
 
