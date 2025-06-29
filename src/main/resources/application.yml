@@ -3,15 +3,13 @@ spring:
     name: DistribuitionCenter
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/cd
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/cd}
     username: root
     password: root
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-server:
-  port: 6981
 logging:
   level:
     root: info
@@ -20,8 +18,8 @@ logging:
 
 cd:
   id: 1
-  name: "pedro"
-  url: "http://10.1.6.196:6981"
+  name: "nha"
+  url: ${CD_URL:http://localhost:6981}
 
 hub:
-  address: "http://10.1.6.194:6980"
+  address: ${HUB_ADDRESS:http://localhost:8080}
