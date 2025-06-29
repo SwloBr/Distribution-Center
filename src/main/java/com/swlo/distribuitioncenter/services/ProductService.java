@@ -88,14 +88,14 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public ProductEntity takeProduct(String productId, int quantity, String cdUrl) {
-        ProductEntity product = getProductById(productId);
+    public ProductEntity takeProduct(String productName, int quantity, String cdUrl) {
+        ProductEntity product = getProductByName(productName);
         if (product == null) {
-            throw new RuntimeException("Product not found with id: " + productId);
+            throw new RuntimeException("Product not found with id: " + productName);
         }
         CdClient cdClient = new CdClient(cdUrl);
         try {
-            cdClient.sendProduct(productId, quantity);
+            cdClient.sendProduct(productName, quantity);
         } catch (Exception e) {
             throw new RuntimeException("Failed to send product to CD: " + e.getMessage());
         }
