@@ -28,7 +28,7 @@ services:
       - DATASOURCE_URL=jdbc:postgresql://postgres:5432/cd1
       - DATASOURCE_USERNAME=root
       - DATASOURCE_PASSWORD=root
-      - CD_URL=http://cd1:8081
+      - CD_URL=http://cd1:8080
       - HUB_ADDRESS=http://hub:8080
     depends_on:
       - postgres
@@ -42,7 +42,7 @@ services:
       - DATASOURCE_URL=jdbc:postgresql://postgres:5432/cd2
       - DATASOURCE_USERNAME=root
       - DATASOURCE_PASSWORD=root
-      - CD_URL=http://cd2:8082
+      - CD_URL=http://cd2:8080
       - HUB_ADDRESS=http://hub:8080
     depends_on:
       - postgres
@@ -56,7 +56,7 @@ services:
       - DATASOURCE_URL=jdbc:postgresql://postgres:5432/cd3
       - DATASOURCE_USERNAME=root
       - DATASOURCE_PASSWORD=root
-      - CD_URL=http://cd3:8083
+      - CD_URL=http://cd3:8080
       - HUB_ADDRESS=http://hub:8080
     depends_on:
       - postgres
@@ -70,7 +70,7 @@ services:
       - DATASOURCE_URL=jdbc:postgresql://postgres:5432/cd4
       - DATASOURCE_USERNAME=root
       - DATASOURCE_PASSWORD=root
-      - CD_URL=http://cd4:8084
+      - CD_URL=http://cd4:8080
       - HUB_ADDRESS=http://hub:8080
     depends_on:
       - postgres
@@ -86,10 +86,10 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - CD1_URL=http://cd1:8081
-      - CD2_URL=http://cd2:8082
-      - CD3_URL=http://cd3:8083
-      - CD4_URL=http://cd4:8084
+      - CD1_URL=http://cd1:8080
+      - CD2_URL=http://cd2:8080
+      - CD3_URL=http://cd3:8080
+      - CD4_URL=http://cd4:8080
       - MONGODB_URI=mongodb://mongo:27017/hub
     depends_on:
       - postgres
