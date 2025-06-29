@@ -31,7 +31,7 @@ public class ProductController {
 
     @GetMapping("/name/{name}")
     public ResponseEntity<ProductDto> getProductByName(@PathVariable String name) {
-        return ResponseEntity.ok(productMapper.toDto(productService.getProductById(name)));
+        return ResponseEntity.ok(productMapper.toDto(productService.getProductByName(name)));
     }
 
     @GetMapping
@@ -56,8 +56,8 @@ public class ProductController {
         return ResponseEntity.ok(productMapper.toDto(product));
     }
 
-    @GetMapping("/send/{productId}/{quantity}")
-    public void sendProduct(@PathVariable String productId, @PathVariable int quantity) {
-        productService.sendProduct(productId, quantity);
+    @GetMapping("/send/{productName}/{quantity}")
+    public void sendProduct(@PathVariable String productName, @PathVariable int quantity) {
+        productService.sendProduct(productName, quantity);
     }
 }
