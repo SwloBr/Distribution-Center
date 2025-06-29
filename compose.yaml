@@ -1,0 +1,96 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker Compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=cd1
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-multi-db.sh:/docker-entrypoint-initdb.d/init-multi-db.sh:ro
+
+  cd1:
+    build:
+      context: .
+    ports:
+      - "8081:8080"
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgres:5432/cd1
+      - DATASOURCE_USERNAME=root
+      - DATASOURCE_PASSWORD=root
+      - CD_URL=http://cd1:8081
+      - HUB_ADDRESS=http://hub:8080
+    depends_on:
+      - postgres
+
+  cd2:
+    build:
+      context: .
+    ports:
+      - "8082:8080"
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgres:5432/cd2
+      - DATASOURCE_USERNAME=root
+      - DATASOURCE_PASSWORD=root
+      - CD_URL=http://cd2:8082
+      - HUB_ADDRESS=http://hub:8080
+    depends_on:
+      - postgres
+
+  cd3:
+    build:
+      context: .
+    ports:
+      - "8083:8080"
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgres:5432/cd3
+      - DATASOURCE_USERNAME=root
+      - DATASOURCE_PASSWORD=root
+      - CD_URL=http://cd3:8083
+      - HUB_ADDRESS=http://hub:8080
+    depends_on:
+      - postgres
+
+  cd4:
+    build:
+      context: .
+    ports:
+      - "8084:8080"
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgres:5432/cd4
+      - DATASOURCE_USERNAME=root
+      - DATASOURCE_PASSWORD=root
+      - CD_URL=http://cd4:8084
+      - HUB_ADDRESS=http://hub:8080
+    depends_on:
+      - postgres
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+
+  hub:
+    build:
+      context: ../HUB/HUB
+    ports:
+      - "8080:8080"
+    environment:
+      - CD1_URL=http://cd1:8081
+      - CD2_URL=http://cd2:8082
+      - CD3_URL=http://cd3:8083
+      - CD4_URL=http://cd4:8084
+      - MONGODB_URI=mongodb://mongo:27017/hub
+    depends_on:
+      - postgres
+      - mongo
