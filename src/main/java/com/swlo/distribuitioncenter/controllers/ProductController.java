@@ -29,6 +29,11 @@ public class ProductController {
         return ResponseEntity.ok(productMapper.toDto(productService.getProductById(id)));
     }
 
+    @GetMapping("/name/{name}")
+    public ResponseEntity<ProductDto> getProductByName(@PathVariable String name) {
+        return ResponseEntity.ok(productMapper.toDto(productService.getProductById(name)));
+    }
+
     @GetMapping
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts().stream().map(productMapper::toDto).toList());
