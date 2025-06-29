@@ -13,7 +13,7 @@ public class CdClient {
 
     public void sendProduct(String productName, int quantity) {
         String url = baseUrl + "/products/send/" + productName + "/" + quantity;
-        restTemplate.postForObject(url, null, Void.class);
+        restTemplate.getForObject(url, Void.class);
     }
 
 }
